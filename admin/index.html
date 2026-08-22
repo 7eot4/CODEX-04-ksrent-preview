@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#182425" />
+    <title>Panel właściciela | KS Rent</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <a class="brand" href="../"><span>KS</span><small>RENT</small></a>
+      <div>
+        <button type="button" class="text-button" data-refresh hidden>Odśwież</button>
+        <button type="button" class="text-button" data-sign-out hidden>Wyloguj</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="login-card" data-login>
+        <p class="eyebrow">Panel właściciela</p>
+        <h1>Zaloguj się bez hasła.</h1>
+        <p>Podaj skonfigurowany adres właściciela. Jednorazowy link logowania przyjdzie e-mailem.</p>
+        <form id="login-form">
+          <label for="owner-email">E-mail właściciela</label>
+          <input id="owner-email" name="email" type="email" autocomplete="email" required placeholder="adres@email.com" />
+          <button class="button" type="submit">Wyślij magic link <span aria-hidden="true">↗</span></button>
+          <p class="status" role="status"></p>
+        </form>
+      </section>
+
+      <section class="dashboard" data-dashboard hidden>
+        <div class="dashboard-heading">
+          <div>
+            <p class="eyebrow">Panel właściciela</p>
+            <h1>Zapytania i kalendarz.</h1>
+          </div>
+          <p class="session-label" data-session-label></p>
+        </div>
+
+        <div class="summary-grid" aria-label="Podsumowanie">
+          <article><span>Oczekujące</span><strong data-count-pending>0</strong></article>
+          <article><span>Zaakceptowane</span><strong data-count-accepted>0</strong></article>
+          <article><span>Aktywne blokady</span><strong data-count-blocks>0</strong></article>
+        </div>
+
+        <section class="panel-section">
+          <div class="section-title">
+            <div><p class="eyebrow">Kalendarz</p><h2>Zablokuj termin ręcznie</h2></div>
+            <p>Zakres działa jako <code>[od, do)</code>: dzień „do” pozostaje dostępny.</p>
+          </div>
+          <form id="manual-block-form" class="manual-block-form">
+            <label>Od<input required type="date" name="check_in" /></label>
+            <label>Do<input required type="date" name="check_out" /></label>
+            <label>Notatka<input type="text" name="note" maxlength="500" placeholder="np. pobyt właściciela" /></label>
+            <button class="button" type="submit">Zablokuj termin</button>
+          </form>
+          <p class="status" data-admin-status role="status"></p>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title"><div><p class="eyebrow">Skrzynka</p><h2>Zapytania</h2></div></div>
+          <div class="inquiry-list" data-inquiries></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title"><div><p class="eyebrow">Dostępność</p><h2>Aktywne rezerwacje i blokady</h2></div></div>
+          <div class="block-list" data-blocks></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="../config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3/dist/umd/supabase.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

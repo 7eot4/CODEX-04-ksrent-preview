@@ -1,0 +1,6 @@
+window.KS_RENT_CONFIG = Object.freeze({
+  SUPABASE_URL: "",
+  SUPABASE_PUBLISHABLE_KEY: "",
+  WHATSAPP_NUMBER: "",
+  TURNSTILE_SITE_KEY: "",
+});
