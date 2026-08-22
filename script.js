@@ -490,14 +490,34 @@ inquiryForm.elements.departure.addEventListener("change", () => {
   selectedEnd = rules.isIsoDate(inquiryForm.elements.departure.value) ? dateFromKey(inquiryForm.elements.departure.value) : null;
   renderCalendar();
 });
+const lightboxImage = lightbox.querySelector("img");
+const sizeLightbox = () => {
+  if (!lightboxImage.naturalWidth || !lightboxImage.naturalHeight) return;
+  const viewportGap = 32;
+  const scale = Math.min(
+    (window.innerWidth - viewportGap) / lightboxImage.naturalWidth,
+    (window.innerHeight - viewportGap) / lightboxImage.naturalHeight,
+    1,
+  );
+  lightbox.style.width = `${Math.floor(lightboxImage.naturalWidth * scale)}px`;
+  lightbox.style.height = `${Math.floor(lightboxImage.naturalHeight * scale)}px`;
+};
+
 document.querySelectorAll(".gallery-card").forEach((card) =>
   card.addEventListener("click", () => {
-    const image = lightbox.querySelector("img");
-    image.src = card.dataset.image;
-    image.alt = getValue(translations[language], card.dataset.altKey);
-    lightbox.showModal();
+    const openLightbox = () => {
+      sizeLightbox();
+      if (!lightbox.open) lightbox.showModal();
+    };
+    lightboxImage.src = card.dataset.image;
+    lightboxImage.alt = getValue(translations[language], card.dataset.altKey);
+    if (lightboxImage.complete && lightboxImage.naturalWidth) openLightbox();
+    else lightboxImage.addEventListener("load", openLightbox, { once: true });
   }),
 );
+window.addEventListener("resize", () => {
+  if (lightbox.open) sizeLightbox();
+});
 document.querySelector("[data-close-lightbox]").addEventListener("click", () => lightbox.close());
 [inquiryModal, lightbox].forEach((dialog) =>
   dialog.addEventListener("click", (event) => {
