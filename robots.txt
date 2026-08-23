@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://7eot4.github.io/CODEX-04-ksrent-preview/sitemap.xml
