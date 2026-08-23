@@ -1,7 +1,7 @@
 (function exposeBookingRules(root, factory) {
   const rules = factory();
   if (typeof module === "object" && module.exports) module.exports = rules;
-  else root.KSRentBookingRules = rules;
+  else root.MareLentoBookingRules = rules;
 })(typeof globalThis !== "undefined" ? globalThis : this, function createRules() {
   const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 

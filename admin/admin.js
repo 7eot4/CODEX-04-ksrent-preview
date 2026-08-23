@@ -1,4 +1,4 @@
-const config = window.KS_RENT_CONFIG || {};
+const config = window.MARE_LENTO_CONFIG || {};
 const configured = Boolean(config.SUPABASE_URL && config.SUPABASE_PUBLISHABLE_KEY);
 const loginSection = document.querySelector("[data-login]");
 const dashboard = document.querySelector("[data-dashboard]");

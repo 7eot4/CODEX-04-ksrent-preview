@@ -6,7 +6,7 @@ button { cursor:pointer; }
 a { color:inherit; }
 :focus-visible { outline:3px solid #e0a889; outline-offset:3px; }
 .admin-header { min-height:82px; padding:18px clamp(22px,5vw,70px); display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
-.brand { display:inline-grid; justify-items:center; line-height:.75; letter-spacing:.15em; font-weight:600; text-decoration:none; min-width:54px; }.brand span { font-family:"Playfair Display",serif; font-size:32px; letter-spacing:-.08em; }.brand small { font-size:9px; letter-spacing:.33em; margin-top:6px; }
+.brand { display:inline-grid; justify-items:start; line-height:1; font-weight:600; text-decoration:none; min-width:172px; }.brand span { font-family:"Playfair Display",serif; font-size:22px; letter-spacing:.08em; white-space:nowrap; }.brand small { font-size:7px; letter-spacing:.16em; margin-top:7px; white-space:nowrap; opacity:.76; }
 .text-button { border:0; background:transparent; color:var(--ocean); font-weight:700; font-size:12px; margin-left:16px; }
 main { width:min(1180px,calc(100% - 40px)); margin:0 auto; padding:70px 0 110px; }
 .eyebrow { text-transform:uppercase; letter-spacing:.17em; font-size:10px; font-weight:700; color:var(--ocean); margin:0 0 14px; }
