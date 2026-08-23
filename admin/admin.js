@@ -63,7 +63,7 @@ function renderInquiries() {
         : "";
     return `<article class="inquiry-card">
       <div class="inquiry-card-top"><div><p class="eyebrow">${escapeHtml(formatDate(inquiry.created_at.slice(0, 10)))}</p><h3>${escapeHtml(inquiry.guest_name)}</h3></div><span class="status-badge ${escapeHtml(inquiry.status)}">${escapeHtml(statusLabel(inquiry.status))}</span></div>
-      <div class="inquiry-meta"><strong>${escapeHtml(formatDate(inquiry.check_in))} – ${escapeHtml(formatDate(inquiry.check_out))}</strong><span>${inquiry.guest_count} os.</span><a href="mailto:${encodeURIComponent(inquiry.guest_email)}">${escapeHtml(inquiry.guest_email)}</a><span>Język: ${escapeHtml(inquiry.language.toUpperCase())}</span></div>
+      <div class="inquiry-meta"><strong>${escapeHtml(formatDate(inquiry.check_in))} – ${escapeHtml(formatDate(inquiry.check_out))}</strong><span>${inquiry.guest_count} os.</span><a href="mailto:${encodeURIComponent(inquiry.guest_email)}">${escapeHtml(inquiry.guest_email)}</a>${inquiry.guest_phone ? `<a href="tel:${encodeURIComponent(inquiry.guest_phone.replace(/\s/g, ""))}">${escapeHtml(inquiry.guest_phone)}</a>` : ""}<span>Język: ${escapeHtml(inquiry.language.toUpperCase())}</span></div>
       <div class="inquiry-message">${escapeHtml(inquiry.message || "Bez dodatkowej wiadomości.")}</div>
       ${actions ? `<div class="inquiry-actions">${actions}</div>` : ""}
     </article>`;
