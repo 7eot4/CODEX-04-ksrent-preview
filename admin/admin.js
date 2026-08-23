@@ -8,9 +8,11 @@ const adminStatus = document.querySelector("[data-admin-status]");
 const refreshButton = document.querySelector("[data-refresh]");
 const signOutButton = document.querySelector("[data-sign-out]");
 const todayKey = new Date().toISOString().slice(0, 10);
+const idleTimeoutMs = 30 * 60 * 1000;
 let client = null;
 let session = null;
 let state = { inquiries: [], blocks: [] };
+let idleTimer = null;
 
 function setStatus(element, message, error = false) {
   element.textContent = message;
@@ -43,6 +45,15 @@ async function adminRequest(method = "GET", body) {
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(payload.error || "Operacja nie powiodła się.");
   return payload;
+}
+
+function resetIdleTimer() {
+  if (idleTimer) window.clearTimeout(idleTimer);
+  if (!session || !client) return;
+  idleTimer = window.setTimeout(async () => {
+    await client.auth.signOut();
+    showSession(null);
+  }, idleTimeoutMs);
 }
 
 function statusLabel(status) {
@@ -111,6 +122,7 @@ function showSession(nextSession) {
   refreshButton.hidden = !signedIn;
   signOutButton.hidden = !signedIn;
   document.querySelector("[data-session-label]").textContent = signedIn ? session.user.email : "";
+  resetIdleTimer();
   if (signedIn) loadDashboard();
 }
 
@@ -184,6 +196,8 @@ signOutButton.addEventListener("click", async () => {
   await client.auth.signOut();
   showSession(null);
 });
+for (const eventName of ["pointerdown", "keydown", "touchstart"])
+  window.addEventListener(eventName, resetIdleTimer, { passive: true });
 manualForm.elements.check_in.min = todayKey;
 manualForm.elements.check_out.min = todayKey;
 
@@ -191,7 +205,12 @@ if (!configured || !window.supabase) {
   setStatus(loginForm.querySelector(".status"), "Panel wymaga uzupełnienia config.js i wdrożenia backendu Supabase.", true);
 } else {
   client = window.supabase.createClient(config.SUPABASE_URL, config.SUPABASE_PUBLISHABLE_KEY, {
-    auth: { persistSession: true, detectSessionInUrl: true, flowType: "implicit" },
+    auth: {
+      persistSession: true,
+      detectSessionInUrl: true,
+      flowType: "pkce",
+      storage: window.sessionStorage,
+    },
   });
   client.auth.getSession().then(({ data }) => showSession(data.session));
   client.auth.onAuthStateChange((_event, nextSession) => showSession(nextSession));
