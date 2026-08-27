@@ -277,6 +277,20 @@
               </div>
             </div>
           </div>
+          <section class="price-estimate" id="price-estimate" aria-labelledby="price-estimate-title">
+            <div class="price-estimate-heading">
+              <span id="price-estimate-title" data-i18n="pricing.title">Precio estimado de la estancia</span>
+              <strong id="price-total" aria-live="polite">—</strong>
+            </div>
+            <p class="price-estimate-empty" id="price-estimate-empty" data-i18n="pricing.selectDates">Elige las fechas de llegada y salida para ver la estimación.</p>
+            <dl class="price-breakdown" id="price-breakdown" hidden="">
+              <div><dt data-i18n="pricing.nights">Noches</dt><dd id="price-nights">—</dd></div>
+              <div><dt data-i18n="pricing.accommodation">Estancia</dt><dd id="price-accommodation">—</dd></div>
+              <div id="price-discount-row" hidden=""><dt data-i18n="pricing.discount">Descuento por estancia larga</dt><dd id="price-discount">—</dd></div>
+              <div><dt data-i18n="pricing.cleaning">Preparación del apartamento</dt><dd id="price-cleaning">—</dd></div>
+            </dl>
+            <p class="price-estimate-note" data-i18n="pricing.note">Esta estimación no es vinculante. El propietario confirmará el precio final, los posibles cargos locales y las condiciones al aceptar la consulta.</p>
+          </section>
           <button class="button booking-button" type="button" data-open-inquiry="">
             <span data-i18n="booking.cta">Continuar con la consulta</span><span aria-hidden="true">↗</span>
           </button>
@@ -485,7 +499,8 @@
       <button class="modal-close" type="button" aria-label="Cerrar la foto" data-i18n-aria-label="aria.closeImage" data-close-lightbox="">
         ×</button><img alt="">
     </dialog>
-    <script src="../config.js?v=20260823-security"></script>
-    <script src="../booking-rules.js?v=20260823-security"></script>
-    <script src="../script.js?v=20260823-security"></script>
+    <script src="../config.js?v=20260827-pricing-test"></script>
+    <script src="../booking-rules.js?v=20260827-pricing-test"></script>
+    <script src="../pricing-rules.js?v=20260827-pricing-test"></script>
+    <script src="../script.js?v=20260827-pricing-test"></script>
 </body></html>

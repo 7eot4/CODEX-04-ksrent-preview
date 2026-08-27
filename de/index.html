@@ -277,6 +277,20 @@
               </div>
             </div>
           </div>
+          <section class="price-estimate" id="price-estimate" aria-labelledby="price-estimate-title">
+            <div class="price-estimate-heading">
+              <span id="price-estimate-title" data-i18n="pricing.title">Geschätzter Aufenthaltspreis</span>
+              <strong id="price-total" aria-live="polite">—</strong>
+            </div>
+            <p class="price-estimate-empty" id="price-estimate-empty" data-i18n="pricing.selectDates">Wählen Sie An- und Abreise, um die Schätzung anzuzeigen.</p>
+            <dl class="price-breakdown" id="price-breakdown" hidden="">
+              <div><dt data-i18n="pricing.nights">Nächte</dt><dd id="price-nights">—</dd></div>
+              <div><dt data-i18n="pricing.accommodation">Aufenthalt</dt><dd id="price-accommodation">—</dd></div>
+              <div id="price-discount-row" hidden=""><dt data-i18n="pricing.discount">Langzeitrabatt</dt><dd id="price-discount">—</dd></div>
+              <div><dt data-i18n="pricing.cleaning">Vorbereitung des Apartments</dt><dd id="price-cleaning">—</dd></div>
+            </dl>
+            <p class="price-estimate-note" data-i18n="pricing.note">Diese Schätzung ist unverbindlich. Den Endpreis, mögliche lokale Abgaben und die Aufenthaltsbedingungen bestätigt der Eigentümer bei Annahme der Anfrage.</p>
+          </section>
           <button class="button booking-button" type="button" data-open-inquiry="">
             <span data-i18n="booking.cta">Weiter zur Anfrage</span><span aria-hidden="true">↗</span>
           </button>
@@ -485,7 +499,8 @@
       <button class="modal-close" type="button" aria-label="Foto schließen" data-i18n-aria-label="aria.closeImage" data-close-lightbox="">
         ×</button><img alt="">
     </dialog>
-    <script src="../config.js?v=20260823-security"></script>
-    <script src="../booking-rules.js?v=20260823-security"></script>
-    <script src="../script.js?v=20260823-security"></script>
+    <script src="../config.js?v=20260827-pricing-test"></script>
+    <script src="../booking-rules.js?v=20260827-pricing-test"></script>
+    <script src="../pricing-rules.js?v=20260827-pricing-test"></script>
+    <script src="../script.js?v=20260827-pricing-test"></script>
 </body></html>
